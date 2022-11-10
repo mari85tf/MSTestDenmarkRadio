@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
 namespace MSTestDenmarkRadio
 {
@@ -30,26 +31,17 @@ namespace MSTestDenmarkRadio
             Assert.AreEqual("Denmark Radio", _driver.Title);
 
             IWebElement inputElement = _driver.FindElement(By.Id("deleteInput"));
-            inputElement.SendKeys("2");
+            inputElement.SendKeys("10");
 
             IWebElement button1 = _driver.FindElement(By.Id("deleteButton"));
             button1.Click();
 
-            //IWebElement button2 = _driver.FindElement(By.Id("buttonShow"));
-            //button2.Click();
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10)); // decorator pattern?
+            IWebElement deleteMusic = wait.Until(d => d.FindElement(By.Id("outputDelete")));
 
-            IWebElement outputElement1 = _driver.FindElement(By.Id("outputDelete"));
-            string text1 = outputElement1.Text;
+            Assert.AreEqual("200", deleteMusic.Text);
 
-            Assert.AreEqual("", text1);
 
-            //IWebElement button3 = _driver.FindElement(By.Id("buttonClear"));
-            //button3.Click();
-
-            //IWebElement outputElement2 = _driver.FindElement(By.Id("outputField"));
-            //string text2 = outputElement2.Text;
-
-            //Assert.AreEqual("", text2);
 
         }
     }
