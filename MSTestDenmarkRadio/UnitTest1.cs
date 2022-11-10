@@ -7,7 +7,7 @@ namespace MSTestDenmarkRadio
     [TestClass]
     public class UnitTest1
     {
-        private static readonly string DriverDirectory = "C:\\WebDrivers";
+        private static readonly string DriverDirectory = "C:\\WebDrivers\\chromedriver_win32 (2)";
         private static IWebDriver _driver;
 
         [ClassInitialize]
