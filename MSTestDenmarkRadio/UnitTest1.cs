@@ -25,21 +25,21 @@ namespace MSTestDenmarkRadio
         public void TestMethod()
         {
 
-            string url = "http://127.0.0.1:5501/index.html";
+            string url = "https://denmarkradioui.azurewebsites.net/";
             _driver.Navigate().GoToUrl(url);
 
             Assert.AreEqual("Denmark Radio", _driver.Title);
 
-            //IWebElement inputElement = _driver.FindElement(By.Id("deleteInput"));
-            //inputElement.SendKeys("10");
+            IWebElement inputElement = _driver.FindElement(By.Id("deleteInput"));
+            inputElement.SendKeys("5");
 
-            //IWebElement button1 = _driver.FindElement(By.Id("deleteButton"));
-            //button1.Click();
+            IWebElement button1 = _driver.FindElement(By.Id("deleteButton"));
+            button1.Click();
 
-            //WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10)); // decorator pattern?
-            //IWebElement deleteMusic = wait.Until(d => d.FindElement(By.Id("outputDelete")));
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10)); // decorator pattern?
+            IWebElement deleteMusic = wait.Until(d => d.FindElement(By.Id("outputDelete")));
 
-            //Assert.AreEqual("200", deleteMusic.Text);
+            Assert.AreEqual("200 OK", deleteMusic.Text);
 
             IWebElement inputTitle = _driver.FindElement(By.Id("title"));
             inputTitle.SendKeys("test");
@@ -59,7 +59,7 @@ namespace MSTestDenmarkRadio
             WebDriverWait waitMusic = new WebDriverWait(_driver, TimeSpan.FromSeconds(10)); // decorator pattern?
             IWebElement addMusic = waitMusic.Until(d => d.FindElement(By.Id("addMessage")));
 
-            Assert.AreEqual("response 201", addMusic.Text);
+            Assert.AreEqual("response 201 Created", addMusic.Text);
         }
     }
 }
